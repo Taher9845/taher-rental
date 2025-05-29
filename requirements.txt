@@ -6,4 +6,3 @@ whitenoise>=6.6.0           # Static file support in production
 psycopg2-binary>=2.9.9      # If using PostgreSQL
 python-decouple>=3.8        # For environment variable management
 dj-database-url>=2.1.0      # Useful for database URL parsing
-pip freeze > requirements.txt
