@@ -1,0 +1,9 @@
+Django>=4.2,<5.0
+Pillow>=10.0.0         # Required for ImageField
+django-bootstrap4>=24.1.0  # Optional: If you want Bootstrap integration via Django
+gunicorn>=21.2.0            # WSGI server for deployment
+whitenoise>=6.6.0           # Static file support in production
+psycopg2-binary>=2.9.9      # If using PostgreSQL
+python-decouple>=3.8        # For environment variable management
+dj-database-url>=2.1.0      # Useful for database URL parsing
+pip freeze > requirements.txt

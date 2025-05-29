@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ property.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ property.title }}</h2>
+
+<ul class="list-group">
+    <li class="list-group-item"><strong>Rent:</strong> ${{ property.rent }}</li>
+    <li class="list-group-item"><strong>Address:</strong> {{ property.address }}</li>
+    <li class="list-group-item"><strong>Description:</strong> {{ property.description }}</li>
+</ul>
+
+<h2>Apply to Rent</h2>
+<form method="post" action="{% url 'apply_for_property' property.id %}">
+    {% csrf_token %}
+    <label for="tenant_name">Your Name:</label>
+    <input type="text" name="tenant_name" required><br>
+
+    <label for="tenant_email">Your Email:</label>
+    <input type="email" name="tenant_email" required><br>
+
+    <button type="submit">Apply</button>
+</form>
+
+
+
+<a href="{% url 'property_list' %}" class="btn btn-outline-primary mt-3">Back to List</a>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "rental/base.html" %}
+
+{% block content %}
+    <style>
+        .property-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .property-card img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    </style>
+
+    {% for property in properties %}
+        <div class="property-card">
+            {% if property.image %}
+                <img src="{{ property.image.url }}" alt="Image of {{ property.name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/200x150?text=No+Image" alt="No Image">
+            {% endif %}
+            <div>
+                <h3>{{ property.name }}</h3>
+                <p><strong>Address:</strong> {{ property.address }}</p>
+                <p><strong>Rent:</strong> ${{ property.rent_amount }}</p>
+                <p>
+                    {% if property.is_rented %}
+                        <em style="color:red;">Rented</em>
+                    {% else %}
+                        <em style="color:green;">Available</em>
+                    {% endif %}
+                </p>
+                {% if not property.is_rented %}
+                    <form method="post" action="{% url 'apply_for_property' property.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Apply</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>No properties found.</p>
+    {% endfor %}
+{% endblock %}

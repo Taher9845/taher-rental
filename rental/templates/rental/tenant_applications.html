@@ -1,0 +1,24 @@
+{% extends "rental/base.html" %}
+
+{% block title %}My Applications{% endblock %}
+
+{% block content %}
+  <h2>My Rental Applications</h2>
+  <ul>
+    {% for app in applications %}
+      <li>
+        <strong>Property:</strong> {{ app.property.name }} <br>
+        <strong>Status:</strong> {{ app.status }} <br>
+        <strong>Applied On:</strong> {{ app.created_at }}
+      </li>
+    {% empty %}
+      <li>You haven't applied for any properties yet.</li>
+    {% endfor %}
+  </ul>
+{% for app in applications %}
+  <p>Property: {{ app.property.name }} | Status: {{ app.status }}</p>
+{% empty %}
+  <p>No applications yet.</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% for app in applications %}
+  <p>{{ app.tenant.username }} applied for {{ app.property.name }} - Status: {{ app.status }}</p>
+  {% if app.status == 'pending' %}
+    <form action="{% url 'update_application_status' app.id 'approved' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Approve</button>
+    </form>
+    <form action="{% url 'update_application_status' app.id 'rejected' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Reject</button>
+    </form>
+  {% endif %}
+{% endfor %}

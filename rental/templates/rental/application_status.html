@@ -1,0 +1,17 @@
+<h2>Application Status</h2>
+<table border="1">
+  <tr>
+    <th>Tenant</th>
+    <th>Email</th>
+    <th>Property</th>
+    <th>Status</th>
+  </tr>
+  {% for app in applications %}
+  <tr>
+    <td>{{ app.tenant_name }}</td>
+    <td>{{ app.tenant_email }}</td>
+    <td>{{ app.property.name }}</td>
+    <td>{{ app.status }}</td>
+  </tr>
+  {% endfor %}
+</table>

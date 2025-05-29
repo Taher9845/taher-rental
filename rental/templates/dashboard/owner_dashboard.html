@@ -1,0 +1,18 @@
+{% extends "rental/base.html" %}
+{% block content %}
+<h2>Owner Dashboard</h2>
+<p>Welcome, {{ request.user.username }}! You can manage your properties here.</p>
+{% endblock %}
+<h2>Your Properties</h2>
+<ul>
+  {% for prop in properties %}
+    <li>{{ prop.name }} - ${{ prop.rent_amount }}</li>
+  {% endfor %}
+</ul>
+<h2>My Applications</h2>
+{% for app in applications %}
+  <p>Property: {{ app.property.name }} | Status: {{ app.status }}</p>
+{% empty %}
+  <p>No applications yet.</p>
+{% endfor %}
+
